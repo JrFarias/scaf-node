@@ -1,0 +1,36 @@
+{
+  "name": "scaf-node",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "nodemon app/index.js",
+    "up:migrations": "knex migrate:latest",
+    "down:migrations": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JrFarias/scaf-node.git"
+  },
+  "author": "Junior Farias",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JrFarias/scaf-node/issues"
+  },
+  "homepage": "https://github.com/JrFarias/scaf-node#readme",
+  "dependencies": {
+    "http-status-codes": "^1.3.0",
+    "knex": "^0.15.2",
+    "koa": "^2.5.3",
+    "koa-bodyparser": "^4.2.1",
+    "koa-helmet": "^4.0.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^7.4.0",
+    "sqlite3": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
