@@ -1,5 +1,5 @@
 class BaseService {
-  constructor({ repository } = {}) {
+  constructor({ repository }) {
     this.repository = repository;
   }
 
@@ -7,8 +7,8 @@ class BaseService {
     return this.repository.get();
   }
 
-  getBydId(id) {
-    return this.repository.getBydId(id);
+  getById(id) {
+    return this.repository.getById(id);
   }
 
   create(obj) {

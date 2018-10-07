@@ -23,5 +23,8 @@
     "class-methods-use-this": 0,
     "arrow-body-style": 0,
     "newline-before-return": 2
+  },
+  "globals": {
+    "context": true
   }
 }

@@ -1,7 +1,7 @@
 const QueryBuilder = require('../common/QueryBuilder');
 
 class BaseRepository {
-  constructor({ domain, model, table } = {}) {
+  constructor({ domain, model }) {
     this.Model = model;
     this.domain = domain;
   }
@@ -15,20 +15,16 @@ class BaseRepository {
   }
 
   async get() {
-    try {
-      const results = await this.queryBuilder().select('*').from(this.domain)
+    const results = await this.queryBuilder().select('*').from(this.domain)
 
-      return Promise.resolve(results.map(r => new this.Model(r)))
-    } catch(e) {
-      console.log(e);
-    }
+    return Promise.resolve(results.map(r => new this.Model(r)))
   }
 
-  async getBydId(id) {
+  async getById(id) {
     try {
       const result = await this.queryBuilder().select('*').from(this.domain).where({ id });
       if (Array.isArray(result) && result.length === 0) {
-        throw new Error('nao encontrado')
+        throw new Error('not found')
       }
 
       return Promise.resolve(new this.Model(Array.isArray(result) && result[0]))
@@ -57,12 +53,12 @@ class BaseRepository {
   }
 
   async delete(id) {
-    const result = await this.getBydId(id);
+    const result = await this.getById(id);
     if (!result.id) {
-      throw new Error('Erro ao deletar');
+      throw new Error('error deleting');
     }
 
-    await this.queryBuilder().table(this.domain).where({ id }).del();
+    return await this.queryBuilder().table(this.domain).where({ id }).del();
   }
 }
 

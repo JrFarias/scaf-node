@@ -1,8 +1,8 @@
 const KnexInstance = require('../../config/DB');
 
 class QueryBuilder {
-  constructor({ qb = KnexInstance, table }) {
-    this.qb = qb,
+  constructor({ qb, table }) {
+    this.qb = qb || KnexInstance;
     this.table = table;
   }
 }

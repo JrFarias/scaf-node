@@ -8,7 +8,9 @@
     "up:migrations": "knex migrate:latest",
     "down:migrations": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,14 @@
     "sqlite3": "^4.0.2"
   },
   "devDependencies": {
+    "jest": "^23.6.0",
+    "jest-plugin-context": "^2.9.0",
+    "mock-knex": "^0.4.2",
     "nodemon": "^1.18.4"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-plugin-context/setup"
+    ]
   }
 }

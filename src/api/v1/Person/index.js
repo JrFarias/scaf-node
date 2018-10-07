@@ -1,4 +1,4 @@
-const BaseFactory = require('../../../app/core/BaseFactory');
+const baseFactory = require('../../../app/core/baseFactory');
 
 const domain = 'person'
 class Person {
@@ -13,6 +13,6 @@ class Person {
 
 module.exports = {
   domain,
-  factory: (router) => BaseFactory({ router, domain, model: Person }),
+  factory: (router) => baseFactory({ router, domain, model: Person }).routers,
   model: Person
 };
