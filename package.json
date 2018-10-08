@@ -2,9 +2,9 @@
   "name": "scaf-node",
   "version": "0.0.0",
   "description": "",
-  "main": "app/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon app/index.js",
+    "start": "node src/index.js",
     "up:migrations": "knex migrate:latest",
     "down:migrations": "knex migrate:rollback",
     "seed": "knex seed:run",
