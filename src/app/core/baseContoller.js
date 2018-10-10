@@ -1,13 +1,18 @@
 const httpStatus = require('http-status-codes');
 
 class BaseController {
-  constructor({ service }) {
+  constructor({ service, errorHandler }) {
     this.service = service;
+    this.errorHandler = errorHandler;
   }
 
   async get(ctx) {
-    ctx.body = await this.service.get();
-    ctx.status = httpStatus.OK;
+    try {
+      ctx.body = await this.service.get();
+      ctx.status = httpStatus.OK;
+    } catch(e) {
+      return this.errorHandler(e);
+    }
   }
 
   async getById(ctx) {
@@ -16,21 +21,31 @@ class BaseController {
       ctx.status = httpStatus.OK;
     } catch(e) {
       ctx.status = httpStatus.NOT_FOUND;
+
+      return this.errorHandler(e, ctx);
     }
   }
 
   async create(ctx) {
-    const id = await this.service.create(ctx.request.body);
+    try {
+      const id = await this.service.create(ctx.request.body);
 
-    ctx.set('x-id', id);
-    ctx.status = httpStatus.CREATED;
+      ctx.set('x-id', id);
+      ctx.status = httpStatus.CREATED;
+    } catch(e) {
+      return this.errorHandler(e, ctx)
+    }
   }
 
   async update(ctx) {
-    const id = await this.service.update(ctx.params.id, ctx.request.body);
-    ctx.set('x-id', id);
+    try {
+      const id = await this.service.update(ctx.params.id, ctx.request.body);
+      ctx.set('x-id', id);
 
-    ctx.status = httpStatus.OK;
+      ctx.status = httpStatus.OK;
+    } catch(e) {
+      return this.errorHandler(e, ctx)
+    }
   }
 
   async delete(ctx) {
@@ -40,6 +55,8 @@ class BaseController {
     } catch(e) {
       ctx.body = e;
       ctx.status = httpStatus.CONFLICT;
+
+      return this.errorHandler(e, ctx);
     }
   }
 }

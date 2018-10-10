@@ -2,6 +2,7 @@
 
 exports[`BaseContoller matches the snapshot 1`] = `
 BaseController {
+  "errorHandler": undefined,
   "service": [MockFunction],
 }
 `;

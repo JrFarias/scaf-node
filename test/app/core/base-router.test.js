@@ -1,4 +1,4 @@
-const baseRouter = require('../../../src/app/core/baseRouter');
+const baseRouter = require('../../../src/app/core/base-router');
 
 describe('baseRouter', () => {
   let mock;

@@ -1,3 +1,5 @@
 const person = require('../../api/v1/Person');
 
-module.exports = (router) => person.factory(router);
+module.exports = (router) => [
+    person.factory(router),
+  ][0]

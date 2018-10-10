@@ -1,6 +1,6 @@
 module.exports = {
 
-  dev: {
+  development: {
     client: 'sqlite3',
     connection: {
       filename: './src/config/dev.sqlite3',
@@ -11,7 +11,7 @@ module.exports = {
     useNullAsDefault: true
   },
 
-  hml: {
+  staging: {
     client: 'postgresql',
     connection: {
       database: 'my_db',
